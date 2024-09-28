@@ -15,20 +15,20 @@ export default function SideBar({onCategoryChange}) {
 
             </div>
             <ul className="text-gray-800 p-2 flex flex-col gap-2">
-                <li className="flex items-center py-2 hover:bg-gray-100 hover:cursor-pointer rounded border-b border-gray-200">
-                    <div className='flex gap-2 items-center' onClick={()=>onCategoryChange("Games")}>
+                <li className="flex items-center py-2 px-3 w-full hover:bg-gray-200 hover:cursor-pointer rounded border-b border-gray-200" onClick={()=>onCategoryChange("Games")}>
+                    <div className='flex gap-2 items-center' >
                         <SiAmazongames className="h-5 w-5 mr-2 text-blue-500" />
                         <p>Games</p>
                     </div>
                 </li>
-                <li className="flex items-center py-2 hover:bg-gray-100 hover:cursor-pointer rounded border-b border-gray-200">
-                    <div className='flex gap-2 items-center' onClick={()=>onCategoryChange("Listing")}>
+                <li className="flex items-center  py-2 px-3 hover:bg-gray-200 hover:cursor-pointer rounded border-b border-gray-200" onClick={()=>onCategoryChange("Listing")}>
+                    <div className='flex justify-center gap-2 items-center' >
                     <MdCategory className="h-5 w-5 mr-2 text-blue-500" />
                     <p>Listing</p>
                     </div>
                 </li>
-                <li className="flex items-center py-2 hover:bg-gray-100 hover cursor-pointer rounded">
-                    <div className='flex gap-2 items-center' onClick={()=>onCategoryChange('Parent-Category')}>
+                <li className="flex items-center py-2 px-3 hover:bg-gray-200 hover cursor-pointer rounded" onClick={()=>onCategoryChange('Parent-Category')}>
+                    <div className='flex gap-2 items-center' >
                     <BiCategory className="h-5 w-5 mr-2 text-blue-500" />
                     <p>Parent Category</p>
                     </div>
