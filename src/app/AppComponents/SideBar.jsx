@@ -13,6 +13,24 @@ export default function SideBar({ onCategoryChange }) {
         <h2 className="text-blue-500 text-lg font-bold mb-4">SYnX</h2>
       </div>
       <ul className="text-gray-800 p-2 flex flex-col gap-2">
+      <li
+          className="flex items-center py-2 px-3 hover:bg-gray-200 hover cursor-pointer rounded"
+          onClick={() => onCategoryChange("default")}
+        >
+          <div className="flex gap-2 items-center">
+            <FaHome className="h-5 w-5 mr-2 text-blue-500" />
+            <p className="font-semibold">Home</p>
+          </div>
+        </li>
+        <li
+          className="flex items-center py-2 px-3 hover:bg-gray-200 hover cursor-pointer rounded"
+          onClick={() => onCategoryChange("Parent-Category")}
+        >
+          <div className="flex gap-2 items-center">
+            <BiCategory className="h-5 w-5 mr-2 text-blue-500" />
+            <p className="font-semibold">Parent Category</p>
+          </div>
+        </li>
         <li
           className="flex items-center py-2 px-3 w-full hover:bg-gray-200 hover:cursor-pointer rounded border-b border-gray-200"
           onClick={() => onCategoryChange("Games")}
@@ -31,24 +49,8 @@ export default function SideBar({ onCategoryChange }) {
             <p className="font-semibold">Listing</p>
           </div>
         </li>
-        <li
-          className="flex items-center py-2 px-3 hover:bg-gray-200 hover cursor-pointer rounded"
-          onClick={() => onCategoryChange("Parent-Category")}
-        >
-          <div className="flex gap-2 items-center">
-            <BiCategory className="h-5 w-5 mr-2 text-blue-500" />
-            <p className="font-semibold">Parent Category</p>
-          </div>
-        </li>
-        <li
-          className="flex items-center py-2 px-3 hover:bg-gray-200 hover cursor-pointer rounded"
-          onClick={() => onCategoryChange("default")}
-        >
-          <div className="flex gap-2 items-center">
-            <FaHome className="h-5 w-5 mr-2 text-blue-500" />
-            <p className="font-semibold">Home</p>
-          </div>
-        </li>
+        
+        
       </ul>
     </div>
   );

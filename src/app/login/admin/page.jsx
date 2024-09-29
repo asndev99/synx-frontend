@@ -3,14 +3,17 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import {
   loginRequest,
   loginSuccess,
   loginFailure,
 } from "../../../redux/reducers/userReducer";
-
+import { useRouter } from "next/navigation";
 const LoginForm = () => {
+  const navigation = useRouter()
   const {
     register,
     handleSubmit,
@@ -22,14 +25,21 @@ const LoginForm = () => {
   const { loading, error } = useSelector((state) => state.user);
 
   const onSubmit = async (data) => {
+    console.log(data, "data");
     dispatch(loginRequest());
     try {
-      const response = await axios.post("/api/auth/login", data);
-      dispatch(loginSuccess(response.data.user));
+      const response = await axios.post(
+        "https://sn6jm18m-8000.inc1.devtunnels.ms/api/v1/admin/login", data
+      );
+      dispatch(loginSuccess(response.data));
+      localStorage.setItem("admin_token", response.data.token);
+      toast.success("Login successful!");
+      navigation.push('/dashboard')
     } catch (err) {
       dispatch(
         loginFailure(err.response?.data?.message || "Something went wrong")
       );
+      toast.error("Login failed. Please check your credentials and try again.");
     }
     reset();
   };
@@ -47,19 +57,19 @@ const LoginForm = () => {
               className="text-gray-600 font-bold inline-block pb-2"
               htmlFor="email"
             >
-              Email
+              Username
             </label>
             <input
               className="border border-gray-400 focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2"
-              type="email"
-              name="email"
-              placeholder="mehedi@jaman.com"
-              {...register("email", {
-                required: { value: true, message: "Email is required" },
+              type="text"
+              name="username"
+              placeholder="xyz123"
+              {...register("username", {
+                required: { value: true, message: "username is required" },
               })}
             />
             {errors.email && (
-              <p className="text-xs text-red-600">{errors.email.message}</p>
+              <p className="text-xs text-red-600">{errors.username.message}</p>
             )}
           </div>
           <div>
@@ -91,9 +101,10 @@ const LoginForm = () => {
               disabled={loading}
             />
           </div>
-          {error && <p className="text-xs text-red-600">{error}</p>}
+          {/* {error && <p className="text-xs text-red-600">{error}</p>} */}
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };

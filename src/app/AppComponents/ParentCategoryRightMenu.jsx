@@ -1,10 +1,38 @@
+'use client'
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 export default function ParentCategoryRightMenu({ onModalCategoryName }) {
+
+  const [parentCategories, setParentCategories] = useState([]);
+  const fetchParentCategories = async () => {
+    try {
+      const token = localStorage.getItem("admin_token");
+      const response = await axios.get(
+        "https://sn6jm18m-8000.inc1.devtunnels.ms/api/v1/parent-category", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      console.log("response from a get ", response)
+      console.log("Parent Category ", parentCategories)
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    fetchParentCategories()
+
+  }, [fetchParentCategories])
+
+
   return (
     <div className="text-black flex mx-2 flex-col gap-4">
       <div className="">
         <button
           className="px-3 py-2 bg-blue-900 text-white font-bold text-sm rounded-md "
-          onClick={() => onModalCategoryName("Parent_Category")}
+          onClick={() => onModalCategoryName("Parent Category")}
         >
           Add New
         </button>
