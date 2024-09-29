@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-export default function GamesRightMenu({onModalCategoryName}) {
+export default function GamesRightMenu({ onModalCategoryName }) {
   return (
     <div className="text-black flex mx-2 flex-col gap-4">
       <div className="">

@@ -1,11 +1,11 @@
 import react from "react";
-const ListingRigthMenu = ({onModalCategoryName}) => {
+const ListingRigthMenu = ({ onModalCategoryName }) => {
   return (
     <div className="text-black flex mx-2 flex-col gap-4">
       <div className="">
         <button
           className="px-3 py-2 bg-blue-900 text-white font-bold text-sm rounded-md "
-          onClick={()=>onModalCategoryName("Listing_items")}
+          onClick={() => onModalCategoryName("Listing_items")}
         >
           Add New
         </button>
@@ -14,7 +14,6 @@ const ListingRigthMenu = ({onModalCategoryName}) => {
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-             
               <th scope="col" className="px-6 py-3">
                 Product name
               </th>
@@ -31,7 +30,6 @@ const ListingRigthMenu = ({onModalCategoryName}) => {
           </thead>
           <tbody>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              
               <th
                 scope="row"
                 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -43,7 +41,6 @@ const ListingRigthMenu = ({onModalCategoryName}) => {
               <td className="px-6 py-4">$2999</td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              
               <th
                 scope="row"
                 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -55,7 +52,6 @@ const ListingRigthMenu = ({onModalCategoryName}) => {
               <td className="px-6 py-4">$1999</td>
             </tr>
             <tr className="bg-white dark:bg-gray-800">
-              
               <th
                 scope="row"
                 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
