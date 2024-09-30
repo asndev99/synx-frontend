@@ -1,17 +1,33 @@
-'use client'
+"use client"
 
-import react from "react";
-const ListingRigthMenu = ({ onModalCategoryName }) => {
+import React, { useState } from "react";
+import AddGameModal from "./addGameModal";
+
+
+const GameRightSideMenu = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleOpenModalForGame=()=>{
+    setIsModalOpen(true)
+  }
+
   return (
     <div className="text-black flex mx-2 flex-col gap-4">
-      <div className="">
+      <div>
         <button
-          className="px-3 py-2 bg-blue-900 text-white font-bold text-sm rounded-md "
-          onClick={() => onModalCategoryName("Listing_items")}
+          className="px-3 py-2 bg-blue-900 text-white font-bold text-sm rounded-md"
+          onClick={handleOpenModalForGame}
         >
           Add New
         </button>
       </div>
+
+      {
+        isModalOpen && (
+          <AddGameModal isOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+         
+        )
+      }
+    
       <div className="relative overflow-x-auto">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -70,4 +86,5 @@ const ListingRigthMenu = ({ onModalCategoryName }) => {
     </div>
   );
 };
-export default ListingRigthMenu;
+
+export default GameRightSideMenu;

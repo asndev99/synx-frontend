@@ -15,7 +15,7 @@ const Header = () => {
     navigate.push("/login/admin"); 
   };
   return (
-    <div className="bg-blue-500 py-4 flex justify-end items-center w-full mb-2 rounded-md">
+    <div className="bg-blue-500 py-4 flex justify-end items-center w-full mb-2 rounded-bl-lg">
       <div className="flex items-center mr-6 gap-2">
         <Image
           src={menImage}

@@ -1,19 +1,19 @@
-'use client';
+"use client";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export default function Categories({ onModalCategoryName }) {
+export default function Categories() {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const [parentCategories, setParentCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const fetchParentCategories = async () => {
     try {
       setLoading(true);
       const token = localStorage.getItem("admin_token");
-      const response = await axios.get(
-        "https://sn6jm18m-8000.inc1.devtunnels.ms/api/v1/parent-category", {
+      const response = await axios.get(`${API_URL}/parent-category`, {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
       console.log("Response from GET: ", response);
       return response.data.data;
@@ -22,8 +22,7 @@ export default function Categories({ onModalCategoryName }) {
     } finally {
       setLoading(false);
     }
-  }
-
+  };
 
   useEffect(() => {
     const getData = async () => {
@@ -35,15 +34,6 @@ export default function Categories({ onModalCategoryName }) {
 
   return (
     <div className="text-black flex mx-2 flex-col gap-4">
-      <div className="">
-        <button
-          className="px-3 py-2 bg-blue-900 text-white font-bold text-sm rounded-md"
-          onClick={() => onModalCategoryName("Parent Category")}
-        >
-          Add New
-        </button>
-      </div>
-
       {loading ? (
         <div className="flex justify-center items-center py-4">
           <div className="w-8 h-8 border-4 border-blue-900 border-t-transparent border-solid rounded-full animate-spin"></div>
@@ -64,16 +54,17 @@ export default function Categories({ onModalCategoryName }) {
             <tbody>
               {parentCategories.length > 0 ? (
                 parentCategories.map((category) => (
-                  <tr key={category._id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                  <tr
+                    key={category._id}
+                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                  >
                     <th
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                     >
                       {category.name}
                     </th>
-                    <td className="px-6 py-4">
-                      {category.gamesCount || 0}
-                    </td>
+                    <td className="px-6 py-4">{category.gamesCount || 0}</td>
                   </tr>
                 ))
               ) : (

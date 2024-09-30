@@ -1,7 +1,7 @@
 'use client'
 
 import react from "react";
-const ListingRigthMenu = ({ onModalCategoryName }) => {
+const ItemsRightMenu = ({ onModalCategoryName }) => {
   return (
     <div className="text-black flex mx-2 flex-col gap-4">
       <div className="">
@@ -70,4 +70,4 @@ const ListingRigthMenu = ({ onModalCategoryName }) => {
     </div>
   );
 };
-export default ListingRigthMenu;
+export default ItemsRightMenu;

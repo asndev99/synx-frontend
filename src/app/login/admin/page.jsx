@@ -12,10 +12,17 @@ import {
   loginFailure,
 } from "../../../redux/reducers/userReducer";
 import { useRouter } from "next/navigation";
+import { combineSlices } from "@reduxjs/toolkit";
 
 const LoginForm = () => {
+  console.log("env file ", process.env.NEXT_PUBLIC_API_URL);
   const navigation = useRouter();
-  const { register, handleSubmit, formState: { errors }, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
 
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.user);
@@ -25,12 +32,14 @@ const LoginForm = () => {
     dispatch(loginRequest());
     try {
       const response = await axios.post(
-        "https://sn6jm18m-8000.inc1.devtunnels.ms/api/v1/admin/login", data
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/login`,
+        data
       );
       dispatch(loginSuccess(response.data));
+      console.log("login data :: ", response.data);
       localStorage.setItem("admin_token", response.data.token);
       toast.success("Login successful!");
-      navigation.push('/dashboard');
+      navigation.push("/dashboard");
     } catch (err) {
       dispatch(
         loginFailure(err.response?.data?.message || "Something went wrong")
@@ -67,7 +76,9 @@ const LoginForm = () => {
                 })}
               />
               {errors.username && (
-                <p className="text-xs text-red-600">{errors.username.message}</p>
+                <p className="text-xs text-red-600">
+                  {errors.username.message}
+                </p>
               )}
             </div>
             <div>
@@ -87,17 +98,19 @@ const LoginForm = () => {
                 })}
               />
               {errors.password && (
-                <p className="text-xs text-red-600">{errors.password.message}</p>
+                <p className="text-xs text-red-600">
+                  {errors.password.message}
+                </p>
               )}
             </div>
 
             <div>
-              <input
+              <button
                 className="bg-blue-500 w-full py-2 rounded-md text-white font-bold cursor-pointer hover:bg-blue-700"
                 type="submit"
-                value="Login"
-                disabled={loading}
-              />
+              >
+                Login
+              </button>
             </div>
           </form>
         </div>

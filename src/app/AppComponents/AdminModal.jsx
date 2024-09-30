@@ -37,7 +37,7 @@ const AdminModal = ({ modalOpen, setModalOpen, CategoryName }) => {
 
   return (
     <>
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+      <div className="fixed inset-0 z-[99] flex items-center justify-center bg-black bg-opacity-50">
         <div className="relative p-6 w-full max-w-md bg-blue-900 rounded-lg shadow-lg text-white">
           <div className="text-center flex flex-col items-center gap-4">
             <div className="flex flex-col gap-2">
