@@ -2,14 +2,13 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import GamesRightMenu from "../AppComponents/GamesRightMenu";
 import ListingRigthMenu from "../AppComponents/ListingRightMenu";
-import ParentCategoryRightMenu from "../AppComponents/ParentCategoryRightMenu";
 import RightMenu from "../AppComponents/RightMenu";
 import SideBar from "../AppComponents/SideBar";
-import DefaultContent from "../AppComponents/DefaultContent";
 import AdminModal from "../AppComponents/AdminModal";
 import { ToastContainer } from "react-toastify";
+import Home from "../AppComponents/DefaultContent";
+import Categories from "../AppComponents/Categories";
 
 const Dashboard = () => {
     const navigate = useRouter();
@@ -45,9 +44,9 @@ const Dashboard = () => {
                 <SideBar onCategoryChange={handleCategoryChange} />
                 <div className="flex-1">
                     <RightMenu />
-                    {selectedCategory === "default" && <DefaultContent />}
-                    {selectedCategory === "Games" && (
-                        <GamesRightMenu onModalCategoryName={handleCategoryModal} />
+                    {selectedCategory === "Home" && <Home />}
+                    {selectedCategory === "Categories" && (
+                        <Categories onModalCategoryName={handleCategoryModal} />
                     )}
                     {selectedCategory === "Parent-Category" && (
                         <ParentCategoryRightMenu onModalCategoryName={handleCategoryModal} />

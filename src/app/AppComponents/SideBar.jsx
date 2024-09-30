@@ -24,11 +24,11 @@ export default function SideBar({ onCategoryChange }) {
         </li>
         <li
           className="flex items-center py-2 px-3 hover:bg-gray-200 hover cursor-pointer rounded"
-          onClick={() => onCategoryChange("Parent-Category")}
+          onClick={() => onCategoryChange("Categories")}
         >
           <div className="flex gap-2 items-center">
             <BiCategory className="h-5 w-5 mr-2 text-blue-500" />
-            <p className="font-semibold">Parent Category</p>
+            <p className="font-semibold">Categories</p>
           </div>
         </li>
         <li

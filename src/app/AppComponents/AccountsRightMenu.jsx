@@ -1,43 +1,25 @@
-'use client'
-import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
+import GameModal from "./addGameModal";
 
-export default function ParentCategoryRightMenu({ onModalCategoryName }) {
-
-  const [parentCategories, setParentCategories] = useState([]);
-  const fetchParentCategories = async () => {
-    try {
-      const token = localStorage.getItem("admin_token");
-      const response = await axios.get(
-        "https://sn6jm18m-8000.inc1.devtunnels.ms/api/v1/parent-category", {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-      console.log("response from a get ", response)
-      console.log("Parent Category ", parentCategories)
-    }
-    catch (error) {
-      console.log(error);
-    }
-  }
-  useEffect(() => {
-    fetchParentCategories()
-
-  }, [fetchParentCategories])
+const AccountsRightMenu = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
 
   return (
     <div className="text-black flex mx-2 flex-col gap-4">
-      <div className="">
+      <div>
         <button
-          className="px-3 py-2 bg-blue-900 text-white font-bold text-sm rounded-md "
-          onClick={() => onModalCategoryName("Parent Category")}
+          className="px-3 py-2 bg-blue-900 text-white font-bold text-sm rounded-md"
+          onClick={() => handleModalCategoryName("Accounts")}
         >
           Add New
         </button>
       </div>
-      <div className="relative  overflow-x-auto">
+
+      {/* Render the GameModal */}
+      <GameModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+
+      <div className="relative overflow-x-auto">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -50,7 +32,7 @@ export default function ParentCategoryRightMenu({ onModalCategoryName }) {
               <th scope="col" className="px-6 py-3">
                 Category
               </th>
-              <th scope="col" className="px-6 py-3  ">
+              <th scope="col" className="px-6 py-3">
                 Price
               </th>
             </tr>
@@ -94,4 +76,6 @@ export default function ParentCategoryRightMenu({ onModalCategoryName }) {
       </div>
     </div>
   );
-}
+};
+
+export default AccountsRightMenu;
