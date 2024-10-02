@@ -5,7 +5,7 @@ export default function RightMenu(){
     return(
         <div className="bg-blacks w-full">
            <Header/>
-        {/* <ListingRigthMenu/> */}
+       
         </div>
     )
 }

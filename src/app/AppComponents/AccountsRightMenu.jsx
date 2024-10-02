@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import AddGameModal from "./addGameModal";
+import AddGameModal from "./AddGameModal";
 
 const AccountsRightMenu = () => {
+  const accountId="66fa87f42584938dff071a3e"
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
   const handleOpenModalForGame = () => {
     setIsModalOpen(true);
   };
@@ -21,7 +23,7 @@ const AccountsRightMenu = () => {
       </div>
 
       {isModalOpen && (
-        <AddGameModal isOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+        <AddGameModal ApiUrl={`${process.env.NEXT_PUBLIC_API_URL}/admin/accounts/create-game`} CategoryId={accountId} isOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       )}
 
       <div className="relative overflow-x-auto">

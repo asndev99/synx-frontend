@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
@@ -12,7 +12,6 @@ import {
   loginFailure,
 } from "../../../redux/reducers/userReducer";
 import { useRouter } from "next/navigation";
-import { combineSlices } from "@reduxjs/toolkit";
 
 const LoginForm = () => {
   console.log("env file ", process.env.NEXT_PUBLIC_API_URL);
@@ -25,7 +24,6 @@ const LoginForm = () => {
   } = useForm();
 
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.user);
 
   const onSubmit = async (data) => {
     console.log(data, "data");
@@ -36,8 +34,11 @@ const LoginForm = () => {
         data
       );
       dispatch(loginSuccess(response.data));
-      console.log("login data :: ", response.data);
+
+      localStorage.setItem("admin_data", JSON.stringify(response.data.data));
+
       localStorage.setItem("admin_token", response.data.token);
+
       toast.success("Login successful!");
       navigation.push("/dashboard");
     } catch (err) {

@@ -1,33 +1,33 @@
-"use client"
+"use client";
 
-import React, { useState } from "react";
-import AddGameModal from "./addGameModal";
+import React from "react";
+import { useState } from "react";
+import AddGameModal from "./AddGameModal";
 
-
-const GameRightSideMenu = () => {
+const TopUpRightMenu = () => {
+  const topUpId = "66fafd0c77ab2da8ad34d5bb";
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const handleOpenModalForGame=()=>{
-    setIsModalOpen(true)
-  }
-
+  const handleOpenModalForGame = () => {
+    setIsModalOpen(true);
+  };
   return (
     <div className="text-black flex mx-2 flex-col gap-4">
-      <div>
+      <div className="">
         <button
-          className="px-3 py-2 bg-blue-900 text-white font-bold text-sm rounded-md"
+          className="px-3 py-2 bg-blue-900 text-white font-bold text-sm rounded-md "
           onClick={handleOpenModalForGame}
         >
           Add New
         </button>
       </div>
-
-      {
-        isModalOpen && (
-          <AddGameModal isOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
-         
-        )
-      }
-    
+      {isModalOpen && (
+        <AddGameModal
+          ApiUrl={`${process.env.NEXT_PUBLIC_API_URL}/admin/topup/create-game`}
+          CategoryId={topUpId}
+          isOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+        />
+      )}
       <div className="relative overflow-x-auto">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -87,4 +87,4 @@ const GameRightSideMenu = () => {
   );
 };
 
-export default GameRightSideMenu;
+export default TopUpRightMenu;
