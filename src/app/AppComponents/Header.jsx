@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 const Header = () => {
   const router = useRouter(); // Corrected here
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [admindata, setAdmindata] = useState(null); // State to store the admin data
+  const [admindata, setAdmindata] = useState(null); 
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -15,8 +15,8 @@ const Header = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("admin_token");
-    localStorage.removeItem("admin_data"); // Also remove the stored admin data
-    router.push("/login/admin"); // Corrected navigate to router.push
+    localStorage.removeItem("admin_data"); 
+    router.push("/login/admin"); 
   };
 
   useEffect(() => {
@@ -39,8 +39,8 @@ const Header = () => {
           alt="Admin Avatar"
           onClick={toggleDropdown}
         />
-        <p className="text-white w-20 px-2">{admindata?.username || "Admin"}</p>{" "}
-        {/* Safely check admin data */}
+        <p className="text-white w-20 px-2 select-none  ">{admindata?.username || "Admin"}</p>{" "}
+        
       </div>
 
       {isDropdownOpen && (

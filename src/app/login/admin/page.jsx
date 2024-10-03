@@ -3,8 +3,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import axios from "axios";
 import {
   loginRequest,
@@ -12,9 +11,9 @@ import {
   loginFailure,
 } from "../../../redux/reducers/userReducer";
 import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
 
 const LoginForm = () => {
-  console.log("env file ", process.env.NEXT_PUBLIC_API_URL);
   const navigation = useRouter();
   const {
     register,
@@ -26,7 +25,6 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   const onSubmit = async (data) => {
-    console.log(data, "data");
     dispatch(loginRequest());
     try {
       const response = await axios.post(
@@ -52,7 +50,7 @@ const LoginForm = () => {
 
   return (
     <>
-      <ToastContainer />
+      <Toaster />
       <div className="bg-[#e7e7e7] h-screen w-screen flex items-center">
         <div className="h-max mx-auto flex flex-col items-center">
           <h1 className="text-xl font-bold text-center pb-10">Login Admin</h1>

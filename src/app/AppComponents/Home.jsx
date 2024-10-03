@@ -22,9 +22,7 @@ const Home = () => {
       );
 
       const data = await response.data;
-      console.log(data.data, "Data in Home Card");
 
-      // Create an array of cards, each containing a specific piece of data
       const cardsData = [
         { title: "Total Games", value: data.data.totalGames },
         { title: "Total Listings", value: data.data.totalListing },
@@ -32,7 +30,7 @@ const Home = () => {
         { title: "Total Users", value: data.data.totalUsers },
       ];
 
-      return cardsData; // Return cardsData
+      return cardsData;
     } catch (error) {
       console.log(error);
       return [];
@@ -43,9 +41,9 @@ const Home = () => {
 
   useEffect(() => {
     const getData = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 3000)); // 3-second delay
+      await new Promise((resolve) => setTimeout(resolve, 3000));
       const data = await FetchHomeCard();
-      setAllCategory(data); // Set the data to AllCategory
+      setAllCategory(data);
     };
 
     getData();

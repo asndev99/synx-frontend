@@ -6,13 +6,14 @@ import ListingRigthMenu from "../AppComponents/ListingRightMenu";
 import RightMenu from "../AppComponents/RightMenu";
 import SideBar from "../AppComponents/SideBar";
 import AdminModal from "../AppComponents/AdminModal";
-import { ToastContainer } from "react-toastify";
+
 import Home from "../AppComponents/Home";
 import Categories from "../AppComponents/Categories";
 import AccountsRightMenu from "../AppComponents/AccountsRightMenu";
 import { PropagateLoader } from "react-spinners";
 import ItemsRightMenu from "../AppComponents/itemsRightMenu";
 import TopUpRightMenu from "../AppComponents/TopUpRightMenu";
+import { Toaster } from "react-hot-toast";
 
 const Dashboard = () => {
   const navigate = useRouter();
@@ -47,7 +48,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <ToastContainer />
+      <Toaster />
       <div className="flex">
         <SideBar onCategoryChange={handleCategoryChange} />
         <div className="flex-1">
@@ -61,9 +62,7 @@ const Dashboard = () => {
           )}
           {selectedCategory === "Accounts" && <AccountsRightMenu />}
 
-          {selectedCategory === "Topup" && (
-            <TopUpRightMenu CategoryId={TopupId} />
-          )}
+          {selectedCategory === "Topup" && <TopUpRightMenu />}
         </div>
       </div>
       {error && <p className="text-red-600">{error}</p>}

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 axios.defaults.withCredentials = true;
 
@@ -43,7 +43,10 @@ export default function AddGameModal({
       });
 
       setIsModalOpen(false);
-      toast.success("Game added successfully!");
+      setTimeout(() => {
+        toast.success("Game added successfully!");
+      }, 2000);
+
       // setIsModalOpen(false); // Close the modal on success
     } catch (error) {
       console.log("errorr occureedd", error);
