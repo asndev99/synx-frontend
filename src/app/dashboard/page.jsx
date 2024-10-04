@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import ListingRigthMenu from "../AppComponents/ListingRightMenu";
 import RightMenu from "../AppComponents/RightMenu";
 import SideBar from "../AppComponents/SideBar";
-import AdminModal from "../AppComponents/AdminModal";
+
 
 import Home from "../AppComponents/Home";
 import Categories from "../AppComponents/Categories";
@@ -19,8 +19,9 @@ const Dashboard = () => {
   const navigate = useRouter();
   const { loading, error } = useSelector((state) => state.user);
   const [selectedCategory, setSelectedCategory] = useState("Home");
-  const [selectedModalCategory, setSelectedModalCategory] = useState(null);
-  const [modalOpen, setModalOpen] = useState(false);
+  
+
+
 
   useEffect(() => {
     const token = localStorage.getItem("admin_token");
@@ -33,10 +34,7 @@ const Dashboard = () => {
     setSelectedCategory(category);
   };
 
-  const handleCategoryModal = (categoryModalName) => {
-    setSelectedModalCategory(categoryModalName);
-    setModalOpen(!modalOpen);
-  };
+  
 
   if (loading) {
     return (
@@ -58,7 +56,7 @@ const Dashboard = () => {
           {selectedCategory === "Categories" && <Categories />}
           {selectedCategory === "Items" && <ItemsRightMenu />}
           {selectedCategory === "Listing" && (
-            <ListingRigthMenu onModalCategoryName={handleCategoryModal} />
+            <ListingRigthMenu  />
           )}
           {selectedCategory === "Accounts" && <AccountsRightMenu />}
 
@@ -66,13 +64,7 @@ const Dashboard = () => {
         </div>
       </div>
       {error && <p className="text-red-600">{error}</p>}
-      {modalOpen && (
-        <AdminModal
-          modalOpen={modalOpen}
-          CategoryName={selectedModalCategory}
-          setModalOpen={setModalOpen}
-        />
-      )}
+     
     </>
   );
 };

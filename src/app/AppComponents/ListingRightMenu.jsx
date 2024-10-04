@@ -2,13 +2,14 @@
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import { PropagateLoader } from "react-spinners";
-
-const ListingRigthMenu = ({ onModalCategoryName }) => {
+import AdminModal from "./AdminModal";
+const ListingRigthMenu = () => {
   const [allList, setAllList] = useState([]);
   const [loading, setLoading] = useState(false); // Add loading state
-
+  const [gameAdded, setGameAdded] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const FetchAllList = async () => {
     try {
       const token = localStorage.getItem("admin_token");
@@ -32,9 +33,16 @@ const ListingRigthMenu = ({ onModalCategoryName }) => {
       toast.error("Something went wrong while fetching the list.");
       return [];
     } finally {
-      setLoading(false); // End loading
+      setLoading(false); 
     }
   };
+
+
+   const handleGameAdded = () => {
+    setGameAdded(!gameAdded); // Toggle gameAdded to trigger re-fetch
+  };
+
+
 
   useEffect(() => {
     const getList = async () => {
@@ -47,18 +55,25 @@ const ListingRigthMenu = ({ onModalCategoryName }) => {
     }, 3000); // 3 seconds delay
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [gameAdded]);
 
   return (
     <div className="text-black flex mx-2 flex-col gap-4">
       <div>
         <button
           className="px-3 py-2 bg-blue-900 text-white font-bold text-sm rounded-md"
-          onClick={() => onModalCategoryName("Listing_items")}
+          onClick={() =>setModalOpen(true)}
         >
           Add New
         </button>
       </div>
+      {modalOpen && (
+        <AdminModal
+          modalOpen={modalOpen}
+          setModalOpen={setModalOpen}
+          OngameAdded={handleGameAdded}
+        />
+      )}
 
       <div className="relative overflow-x-auto">
         {loading ? (

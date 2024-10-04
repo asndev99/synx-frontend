@@ -2,12 +2,13 @@
 
 import React, { useState, useEffect } from "react";
 import AddGameModal from "./AddGameModal";
-
-import { toast } from "react-toastify";
+import { PropagateLoader } from "react-spinners";
+import toast from "react-hot-toast";
 import axios from "axios";
 const AccountsRightMenu = () => {
   const [allGame, setAllGame] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [gameAdded, setGameAdded] = useState(false);
 
   const accountId = "66fa87f42584938dff071a3e";
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,6 +37,11 @@ const AccountsRightMenu = () => {
       setLoading(false);
     }
   };
+
+  const handleGameAdded = () => {
+    setGameAdded(!gameAdded); // Toggle gameAdded to trigger re-fetch
+  };
+
   useEffect(() => {
     const getData = async () => {
       await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -45,7 +51,7 @@ const AccountsRightMenu = () => {
     };
 
     getData();
-  }, []);
+  }, [gameAdded]);
   return (
     <div className="text-black flex mx-2 flex-col gap-4">
       <div>
@@ -63,6 +69,7 @@ const AccountsRightMenu = () => {
           CategoryId={accountId}
           isOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
+          OngameAdded={handleGameAdded}
         />
       )}
 

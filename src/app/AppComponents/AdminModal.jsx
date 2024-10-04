@@ -1,10 +1,11 @@
 "use client";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { ToastContainer, toast } from "react-toastify";
+import toast from "react-hot-toast";
 import axios from "axios";
+
 axios.defaults.withCredentials=true
-const AdminModal = ({ modalOpen, setModalOpen, CategoryName }) => {
+const AdminModal = ({ modalOpen, setModalOpen, OngameAdded }) => {
   const {
     register,
     reset,
@@ -36,7 +37,7 @@ const AdminModal = ({ modalOpen, setModalOpen, CategoryName }) => {
       console.log(response.data);
       setModalOpen(false);
       toast.success("List  added successfully!");
-
+      OngameAdded()
       reset();
     } catch (err) {
       toast.error("something went wrong")
@@ -50,14 +51,14 @@ const AdminModal = ({ modalOpen, setModalOpen, CategoryName }) => {
         <div className="relative p-6 w-full max-w-md bg-blue-900 rounded-lg shadow-lg text-white">
           <div className="text-center flex flex-col items-center gap-4">
             <div className="flex flex-col gap-2">
-              <h2 className="text-2xl font-bold ">Add New {CategoryName}</h2>
+              <h2 className="text-2xl font-bold ">Add New List</h2>
             </div>
 
-            {CategoryName === "Listing_items" && (
               <form
                 className="flex flex-col gap-4 items-center w-full"
                 onSubmit={handleSubmit(addListing)}
               >
+              
                 <input
                   type="text"
                   name="title"
@@ -131,7 +132,7 @@ const AdminModal = ({ modalOpen, setModalOpen, CategoryName }) => {
                   </button>
                 </div>
               </form>
-            )}
+        
           </div>
         </div>
       </div>

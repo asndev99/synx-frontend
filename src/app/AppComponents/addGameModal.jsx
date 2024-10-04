@@ -11,12 +11,12 @@ export default function AddGameModal({
   CategoryId,
   isOpen,
   setIsModalOpen,
+  OngameAdded
 }) {
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const [file, setFile] = useState(); // Initialize with null
-  console.log("APi Url", ApiUrl);
-  console.log("Different Id ", CategoryId);
+ 
   // Handle file input change
   const handleFileChange = (e) => {
     setFile(e.target.files[0]); // Store the selected file
@@ -43,9 +43,10 @@ export default function AddGameModal({
       });
 
       setIsModalOpen(false);
-      setTimeout(() => {
+     
         toast.success("Game added successfully!");
-      }, 2000);
+        OngameAdded()
+    
 
       // setIsModalOpen(false); // Close the modal on success
     } catch (error) {
@@ -65,15 +66,15 @@ export default function AddGameModal({
           className="flex flex-col items-center gap-4"
           onSubmit={handleSubmit}
         >
-          <h2 className="text-2xl font-bold">Add New Game</h2>
+          <h2 className="text-2xl font-bold text-center">Add New Game</h2>
 
-          <div className="mb-3">
-            <label className="text-sm font-medium text-white mb-1">
+          <div className="mb-3 flex flex-col items-center gap-2">
+            <label className="text-sm font-medium text-white ">
               Game Name
             </label>
             <input
               type="text"
-              className="px-3 py-2 rounded-md border-2 w-full bg-blue-800 text-white focus:border-gray-500"
+              className="px-3 py-2 rounded-md border-2 w-full bg-blue-800 text-white outline-none  focus:border-gray-500"
               placeholder="Enter game name"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -81,14 +82,15 @@ export default function AddGameModal({
             />
           </div>
 
-          <div className="mb-3">
-            <label className="text-sm font-medium text-white mb-1">
+          <div className="mb-3 flex flex-col items-center
+           gap-2">
+            <label className="text-sm font-medium text-white mb-2 ">
               Image File
             </label>
             <input
               type="file"
               name="file"
-              className="px-3 py-2 rounded-md border-2 w-full bg-blue-800 text-white focus:border-gray-500"
+              className="px-3 py-2 rounded-md border-2 w-full bg-blue-800 outline-none text-white focus:border-gray-500"
               onChange={handleFileChange}
               required
             />
@@ -97,9 +99,9 @@ export default function AddGameModal({
           <div className="flex justify-end space-x-2">
             <button
               type="submit"
-              className={`px-4 py-2 ${
-                loading ? "bg-gray-400" : "bg-blue-600"
-              } text-white rounded-lg`}
+              className={`px-4 py-2  ${
+                loading ? "bg-gray-300 text-gray-800" : "bg-blue-600"
+              } text-white rounded-lg hover:bg-white hover:text-blue-800 font-semibold`}
               disabled={loading}
             >
               {loading ? "Saving..." : "Save Game"}
@@ -107,7 +109,7 @@ export default function AddGameModal({
             <button
               type="button"
               onClick={() => setIsModalOpen(false)}
-              className="px-4 py-2 bg-white text-blue-500 rounded-lg"
+              className="px-4 py-2 bg-white text-blue-500 rounded-lg hover:bg-blue-600 hover:text-white"
             >
               Cancel
             </button>

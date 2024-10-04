@@ -3,12 +3,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import AddGameModal from "./AddGameModal";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import axios from "axios";
 import { PropagateLoader } from "react-spinners";
 const TopUpRightMenu = () => {
   const [allGame, setAllGame] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [gameAdded, setGameAdded] = useState(false);
   const topUpId = "66fafd0c77ab2da8ad34d5bb";
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleOpenModalForGame = () => {
@@ -35,6 +36,11 @@ const TopUpRightMenu = () => {
       setLoading(false);
     }
   };
+
+  const handleGameAdded = () => {
+    setGameAdded(!gameAdded); // Toggle gameAdded to trigger re-fetch
+  };
+
   useEffect(() => {
     const getData = async () => {
       await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -44,7 +50,7 @@ const TopUpRightMenu = () => {
     };
 
     getData();
-  }, []);
+  }, [gameAdded]);
   return (
     <div className="text-black flex mx-2 flex-col gap-4 ">
       <div>
@@ -61,6 +67,7 @@ const TopUpRightMenu = () => {
           CategoryId={topUpId}
           isOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
+          OngameAdded={handleGameAdded}
         />
       )}
       {loading ? (
