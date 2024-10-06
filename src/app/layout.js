@@ -1,10 +1,11 @@
 "use client";
 
-import { NextUIProvider } from '@nextui-org/react';
+// import { NextUIProvider } from '@nextui-org/react';
 import localFont from "next/font/local";
 import "./globals.css";
 import { Provider } from "react-redux";
 import store from "../redux/store";
+import { Providers } from './Providers';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -22,11 +23,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <NextUIProvider>
+         
           <Provider store={store}>
+          <Providers>
             {children}
+            </Providers>
           </Provider>
-        </NextUIProvider>
+          
       </body>
     </html>
   );
