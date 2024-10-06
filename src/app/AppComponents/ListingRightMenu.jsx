@@ -7,9 +7,10 @@ import { PropagateLoader } from "react-spinners";
 import AdminModal from "./AdminModal";
 const ListingRigthMenu = () => {
   const [allList, setAllList] = useState([]);
-  const [loading, setLoading] = useState(false); // Add loading state
+  const [loading, setLoading] = useState(false);
   const [gameAdded, setGameAdded] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [categories, setCategories] = useState([]);
   const FetchAllList = async () => {
     try {
       const token = localStorage.getItem("admin_token");
@@ -33,28 +34,44 @@ const ListingRigthMenu = () => {
       toast.error("Something went wrong while fetching the list.");
       return [];
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
+  const fetchAllCategoriesWithGames = async () => {
+    try {
+      const token = localStorage.getItem("admin_token");
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/listing/all-categories`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-   const handleGameAdded = () => {
-    setGameAdded(!gameAdded); // Toggle gameAdded to trigger re-fetch
+      return response.data.data
+    }
+    catch (error) {
+      console.log("Error in fetching categories", error);
+    }
+  }
+
+
+  const handleGameAdded = () => {
+    setGameAdded(!gameAdded);
   };
 
 
 
   useEffect(() => {
-    const getList = async () => {
+    const getListAndCategories = async () => {
       const data = await FetchAllList();
+      const categoriesData = await fetchAllCategoriesWithGames();
       setAllList(data);
+      setCategories(categoriesData);
     };
-
-    const timer = setTimeout(() => {
-      getList();
-    }, 3000); // 3 seconds delay
-
-    return () => clearTimeout(timer);
+    getListAndCategories()
   }, [gameAdded]);
 
   return (
@@ -62,7 +79,7 @@ const ListingRigthMenu = () => {
       <div>
         <button
           className="px-3 py-2 bg-blue-900 text-white font-bold text-sm rounded-md"
-          onClick={() =>setModalOpen(true)}
+          onClick={() => setModalOpen(true)}
         >
           Add New
         </button>
@@ -72,6 +89,7 @@ const ListingRigthMenu = () => {
           modalOpen={modalOpen}
           setModalOpen={setModalOpen}
           OngameAdded={handleGameAdded}
+          categories={categories}
         />
       )}
 

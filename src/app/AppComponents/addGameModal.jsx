@@ -15,11 +15,10 @@ export default function AddGameModal({
 }) {
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
-  const [file, setFile] = useState(); // Initialize with null
- 
-  // Handle file input change
+  const [file, setFile] = useState(); 
+
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]); // Store the selected file
+    setFile(e.target.files[0]); 
   };
 
   // Handle form submission
@@ -37,21 +36,17 @@ export default function AddGameModal({
       const response = await axios.post(ApiUrl, gameData, {
         headers: {
           Authorization: `Bearer ${token}`,
-          // "Content-Type": "multipart/form-data",
-          // No need to set Content-Type for FormData; browser will set it correctly
         },
       });
 
-      setIsModalOpen(false);
-     
-        toast.success("Game added successfully!");
-        OngameAdded()
-    
 
-      // setIsModalOpen(false); // Close the modal on success
+      toast.success("Game added successfully!");
+      setIsModalOpen(false);
+      OngameAdded()
     } catch (error) {
       console.log("errorr occureedd", error);
-      toast.error("Failed to add game. Please try again.");
+      setIsModalOpen(false);
+      toast.error(error.response.data.message);
     } finally {
       setLoading(false);
     }
@@ -99,9 +94,8 @@ export default function AddGameModal({
           <div className="flex justify-end space-x-2">
             <button
               type="submit"
-              className={`px-4 py-2  ${
-                loading ? "bg-gray-300 text-gray-800" : "bg-blue-600"
-              } text-white rounded-lg hover:bg-white hover:text-blue-800 font-semibold`}
+              className={`px-4 py-2  ${loading ? "bg-gray-300 text-gray-800" : "bg-blue-600"
+                } text-white rounded-lg hover:bg-white hover:text-blue-800 font-semibold`}
               disabled={loading}
             >
               {loading ? "Saving..." : "Save Game"}

@@ -6,7 +6,7 @@ import { PropagateLoader } from "react-spinners";
 
 const Home = () => {
   const [AllCategory, setAllCategory] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const FetchHomeCard = async () => {
     try {
