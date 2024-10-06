@@ -9,6 +9,7 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
+  Link
 } from "@nextui-org/react";
 
 export default function NavbarNext({ onCategorySelect }) {
@@ -17,7 +18,7 @@ export default function NavbarNext({ onCategorySelect }) {
   // Define categories with IDs
   const categories = [
     { id: "66f9c4197df5bd17cff84c37", name: "Profile" },
-    { id: 2, name: "Dashboard" },
+    { id: 2, name: "Accounts" },
     { id: 3, name: "Activity" },
     // Add more categories if needed
   ];
@@ -36,6 +37,7 @@ export default function NavbarNext({ onCategorySelect }) {
 
         {/* NavbarContent aligned to left with no gap */}
         <NavbarContent className="hidden sm:flex items-center gap-3">
+          <Link className="text-white text-xl bg-transparent border-0 cursor-pointer" href="/">Home</Link>
           {categories.map((category) => (
             <NavbarItem key={category.id}>
               <button
