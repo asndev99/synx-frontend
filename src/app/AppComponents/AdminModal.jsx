@@ -34,7 +34,8 @@ const AdminModal = ({ modalOpen, setModalOpen, OngameAdded, categories }) => {
           title: value.title,
           price: value.price,
           deliveryTime: value.deliveryTime,
-          gameId: value.gameId, // Pass the selected game ID
+          gameId: value.gameId,
+          parentCategoryId:value.selectedCategory
         },
         {
           headers: {

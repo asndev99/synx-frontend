@@ -7,7 +7,7 @@ import { PropagateLoader } from "react-spinners";
 import AdminModal from "./AdminModal";
 const ListingRigthMenu = () => {
   const [allList, setAllList] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [gameAdded, setGameAdded] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [categories, setCategories] = useState([]);
@@ -96,31 +96,48 @@ const ListingRigthMenu = () => {
       <div className="relative overflow-x-auto">
         {loading ? (
           <div className="text-center py-4">
-            <PropagateLoader color="#3847f0" /> {/* Loader or spinner */}
+            <PropagateLoader color="#3847f0" />
           </div>
         ) : allList && allList.length > 0 ? (
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
+                <th scope="col" className="px-6 py-3">S.No</th>
                 <th scope="col" className="px-6 py-3">List Name</th>
                 <th scope="col" className="px-6 py-3">Delivery Time</th>
                 <th scope="col" className="px-6 py-3">Price</th>
+                <th scope="col" className="px-6 py-3">Game</th>
+                <th scope="col" className="px-6 py-3">Category</th>
               </tr>
             </thead>
             <tbody>
-              {allList.map((item) => (
+              {allList.map((item, index) => (
                 <tr
                   key={item.id}
                   className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                 >
-                  <th
+                  <td
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    {index + 1}
+                  </td>
+                  <td
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
                     {item.title}
-                  </th>
+                  </td>
                   <td className="px-6 py-4">{item.deliveryTime || "N/A"}</td>
                   <td className="px-6 py-4">${item.price}</td>
+                  <td className="px-6 py-4"> <img
+                    src={
+                      item.gameId.imageUrls[0]
+                    }
+                    alt={"Not Found"}
+                    className="w-16 h-16 object-cover rounded-full"
+                  /></td>
+                  <td className="px-6 py-4">{item.gameId.parentCategoryId.name}</td>
                 </tr>
               ))}
             </tbody>
