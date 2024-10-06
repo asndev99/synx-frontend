@@ -9,7 +9,7 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
-  Link
+  Link,
 } from "@nextui-org/react";
 
 export default function NavbarNext({ onCategorySelect }) {
@@ -37,15 +37,21 @@ export default function NavbarNext({ onCategorySelect }) {
 
         {/* NavbarContent aligned to left with no gap */}
         <NavbarContent className="hidden sm:flex items-center gap-3">
-          <Link className="text-white text-xl bg-transparent border-0 cursor-pointer" href="/">Home</Link>
+          <Link
+            className="text-white text-xl bg-transparent border-0 cursor-pointer"
+            href="/"
+          >
+            Home
+          </Link>
           {categories.map((category) => (
             <NavbarItem key={category.id}>
-              <button
+              <Link
                 className="text-white text-xl bg-transparent border-0 cursor-pointer"
+                href="/categories"
                 onClick={() => onCategorySelect(category.id)}
               >
                 {category.name}
-              </button>
+              </Link>
             </NavbarItem>
           ))}
         </NavbarContent>

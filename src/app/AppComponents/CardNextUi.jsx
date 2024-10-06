@@ -17,7 +17,7 @@ export default function App({listing,loading}) {
           <div className="flex justify-between">
        
             <div className="flex flex-col gap-1 items-center">
-                
+               
             <h3>heading</h3>
             <h3>heading</h3>
             </div>

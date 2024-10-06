@@ -52,8 +52,7 @@ const Categories = () => {
       <NavbarNext onCategorySelect={handleCategorySelect} />
       <div className="flex bg-[#0E0E11] flex-col md:flex-row justify-center gap-4 flex-wrap items-center ">
         <CardNextUi listing={listing} loading={loading}  />
-        <CardNextUi />
-        <CardNextUi />
+       
        
       </div>
       <Footer />
