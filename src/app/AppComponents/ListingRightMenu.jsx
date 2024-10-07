@@ -90,14 +90,14 @@ const ListingRigthMenu = () => {
         />
       )}
 
-      <div className="relative overflow-x-auto">
+      <div className="relative overflow-x-hidden">
         {loading ? (
           <div className="text-center py-4">
             <PropagateLoader color="#3847f0" />
           </div>
         ) : allList && allList.length > 0 ? (
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <thead className="text-xs text-gray-700 uppercase w-full bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
                 <th scope="col" className="px-6 py-3">
                   S.No
@@ -139,16 +139,19 @@ const ListingRigthMenu = () => {
                   </td>
                   <td className="px-6 py-4">{item.deliveryTime || "N/A"}</td>
                   <td className="px-6 py-4">${item.price || "N/A"}</td>
-                  <td className="px-6 py-4">
-                    {" "}
+                  
+                  
                     <img
                       src={item.gameId?.imageUrls?.[0] || "NF"}
                       alt={"Not Found"}
                       className="w-16 h-16 object-cover rounded-full"
                     />
-                  </td>
+                  
                   <td className="px-6 py-4">
                   {item.gameId?.parentCategoryId?.name || "NF"}
+                  </td> 
+                  <td className="px-6 py-4">
+                  <button className="px-3 py-2 bg-red-600 rounded-md text-white hover:bg-red-500 font-semibold">Delete</button>
                   </td>
                 </tr>
               ))}

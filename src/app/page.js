@@ -18,10 +18,11 @@ const Page = () => {
         onCategorySelect={handleCategorySelect}
         activeCategoryId={activeCategoryId}
       />
-      <div className="w-full overflow-hidden">
+      <div className="w-full overflow-hidden flex flex-col bg-[#0E0E11]">
         <Corousel />
+        <MainSection />
       </div>
-      <MainSection />
+     
       <Footer />
     </>
   );
