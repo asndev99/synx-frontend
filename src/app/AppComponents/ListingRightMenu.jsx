@@ -60,6 +60,27 @@ const ListingRigthMenu = () => {
     setGameAdded(!gameAdded);
   };
 
+  const HandleDeleteList=async(id)=>{
+    try {
+      console.log("Log id delete",id)
+      const token = localStorage.getItem("admin_token");
+      const response = await axios.delete(
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/listing/delete-list/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const data=await response.data
+      console.log("data delete list",data)
+      toast.success("delete List successfully!")
+      handleGameAdded()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     const getListAndCategories = async () => {
       const data = await FetchAllList();
@@ -121,6 +142,7 @@ const ListingRigthMenu = () => {
             </thead>
             <tbody>
               {allList.map((item, index) => (
+                
                 <tr
                   key={item.id}
                   className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
@@ -151,7 +173,9 @@ const ListingRigthMenu = () => {
                   {item.gameId?.parentCategoryId?.name || "NF"}
                   </td> 
                   <td className="px-6 py-4">
-                  <button className="px-3 py-2 bg-red-600 rounded-md text-white hover:bg-red-500 font-semibold">Delete</button>
+                  <button className="px-3 py-2 bg-red-600 rounded-md text-white hover:bg-red-500 font-semibold"
+                  onClick={()=>HandleDeleteList(item._id)}
+                  >Delete</button>
                   </td>
                 </tr>
               ))}

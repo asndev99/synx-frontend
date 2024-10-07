@@ -4,9 +4,14 @@ import { useState } from "react";
 import { Card, CardBody, Button, Spinner } from "@nextui-org/react";
 
 export default function App({ listing, loading }) {
-  
+  const [expandedCards, setExpandedCards] = useState({});
 
-
+  const toggleExpanded = (id) => {
+    setExpandedCards((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
 
   return (
     <>
@@ -52,9 +57,29 @@ export default function App({ listing, loading }) {
                       <p>{item.deliveryTime || "No delivery time available"}</p>
                     </div>
                   </div>
-                  <p>{item.description || "No description available"}</p>
-                
-                 
+                  {item.description || "No description available"}
+                  <div
+                    className={`transition-all duration-500 ${
+                      expandedCards[item._id]
+                        ? "max-h-[none] overflow-auto"
+                        : "max-h-[100px] overflow-hidden"
+                    }`}
+                    style={{
+                      maxHeight: expandedCards[item._id] ? "300px" : "100px",
+                      overflowY: expandedCards[item._id] ? "scroll" : "hidden",
+                    }}
+                  >
+                    <p></p>
+                  </div>
+
+                  {descriptionLength > 50 && (
+                    <Button
+                      onClick={() => toggleExpanded(item._id)}
+                      className="mt-2"
+                    >
+                      {expandedCards[item._id] ? "Read Less" : "Read More"}
+                    </Button>
+                  )}
                 </div>
               </CardBody>
             </Card>
