@@ -14,6 +14,7 @@ import {
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import logo from "../../public/logo.png";
+
 export default function NavbarNext({ onCategorySelect, activeCategoryId }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const Router = useRouter();
@@ -36,7 +37,9 @@ export default function NavbarNext({ onCategorySelect, activeCategoryId }) {
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
         />
+
         <NavbarBrand className="flex items-center gap-1">
           <Image src={logo} alt="logo" width={100} height={40} />
           <p className="font-bold text-blue-600 text-xl -ml-6">Synx</p>
@@ -64,22 +67,30 @@ export default function NavbarNext({ onCategorySelect, activeCategoryId }) {
         </NavbarContent>
       </NavbarContent>
 
-      <NavbarMenu className="bg-[#14131A]">
-        {categories.map((category) => (
-          <NavbarMenuItem
-            key={category.id}
-            className="flex flex-col gap-6 items-center p-8"
+      {isMenuOpen && (
+        <NavbarMenu className="bg-[#14131A] flex items-center">
+          <Link
+            className=" text-lg text-white bg-transparent border-0 cursor-pointer"
+            href="/"
           >
-            <button
-              className="text-white text-xl bg-transparent border-0 cursor-pointer"
-              set
-              onClick={() => handleCategoryClick(category.id)}
+            Home
+          </Link>
+          {categories.map((category) => (
+            <NavbarMenuItem
+              key={category.id}
+              className="flex flex-col gap-6 items-center p-8"
             >
-              {category.name}
-            </button>
-          </NavbarMenuItem>
-        ))}
-      </NavbarMenu>
+              <button
+                className="text-white text-xl bg-transparent border-0 cursor-pointer"
+                onClick={() => handleCategoryClick(category.id)}
+                set
+              >
+                {category.name}
+              </button>
+            </NavbarMenuItem>
+          ))}
+        </NavbarMenu>
+      )}
     </Navbar>
   );
 }

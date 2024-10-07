@@ -35,8 +35,8 @@ const Corousel = () => {
           <Image
             src={slide.src}
             alt={`Slide ${index + 1}`}
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: "cover" }}
           />
           <h3 className="absolute bottom-0 w-full bg-black bg-opacity-50 text-white py-3">
             {slide.heading}

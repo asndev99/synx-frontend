@@ -60,9 +60,9 @@ const ListingRigthMenu = () => {
     setGameAdded(!gameAdded);
   };
 
-  const HandleDeleteList=async(id)=>{
+  const HandleDeleteList = async (id) => {
     try {
-      console.log("Log id delete",id)
+      console.log("Log id delete", id);
       const token = localStorage.getItem("admin_token");
       const response = await axios.delete(
         `${process.env.NEXT_PUBLIC_API_URL}/admin/listing/delete-list/${id}`,
@@ -72,14 +72,14 @@ const ListingRigthMenu = () => {
           },
         }
       );
-      const data=await response.data
-      console.log("data delete list",data)
-      toast.success("delete List successfully!")
-      handleGameAdded()
+      const data = await response.data;
+
+      toast.success("delete List successfully!");
+      handleGameAdded();
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
     const getListAndCategories = async () => {
@@ -142,7 +142,6 @@ const ListingRigthMenu = () => {
             </thead>
             <tbody>
               {allList.map((item, index) => (
-                
                 <tr
                   key={item.id}
                   className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
@@ -161,21 +160,23 @@ const ListingRigthMenu = () => {
                   </td>
                   <td className="px-6 py-4">{item.deliveryTime || "N/A"}</td>
                   <td className="px-6 py-4">${item.price || "N/A"}</td>
-                  
-                  
-                    <img
-                      src={item.gameId?.imageUrls?.[0] || "NF"}
-                      alt={"Not Found"}
-                      className="w-16 h-16 object-cover rounded-full"
-                    />
-                  
+
+                  <img
+                    src={item.gameId?.imageUrls?.[0] || "NF"}
+                    alt={"Not Found"}
+                    className="w-16 h-16 object-cover rounded-full"
+                  />
+
                   <td className="px-6 py-4">
-                  {item.gameId?.parentCategoryId?.name || "NF"}
-                  </td> 
+                    {item.gameId?.parentCategoryId?.name || "NF"}
+                  </td>
                   <td className="px-6 py-4">
-                  <button className="px-3 py-2 bg-red-600 rounded-md text-white hover:bg-red-500 font-semibold"
-                  onClick={()=>HandleDeleteList(item._id)}
-                  >Delete</button>
+                    <button
+                      className="px-3 py-2 bg-red-600 rounded-md text-white hover:bg-red-500 font-semibold"
+                      onClick={() => HandleDeleteList(item._id)}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}
