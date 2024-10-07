@@ -50,19 +50,15 @@ const ListingRigthMenu = () => {
         }
       );
 
-      return response.data.data
-    }
-    catch (error) {
+      return response.data.data;
+    } catch (error) {
       console.log("Error in fetching categories", error);
     }
-  }
-
+  };
 
   const handleGameAdded = () => {
     setGameAdded(!gameAdded);
   };
-
-
 
   useEffect(() => {
     const getListAndCategories = async () => {
@@ -70,8 +66,9 @@ const ListingRigthMenu = () => {
       const categoriesData = await fetchAllCategoriesWithGames();
       setAllList(data);
       setCategories(categoriesData);
+      console.log("all List data", allList);
     };
-    getListAndCategories()
+    getListAndCategories();
   }, [gameAdded]);
 
   return (
@@ -102,12 +99,24 @@ const ListingRigthMenu = () => {
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                <th scope="col" className="px-6 py-3">S.No</th>
-                <th scope="col" className="px-6 py-3">List Name</th>
-                <th scope="col" className="px-6 py-3">Delivery Time</th>
-                <th scope="col" className="px-6 py-3">Price</th>
-                <th scope="col" className="px-6 py-3">Game</th>
-                <th scope="col" className="px-6 py-3">Category</th>
+                <th scope="col" className="px-6 py-3">
+                  S.No
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  List Name
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Delivery Time
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Price
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Game
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Category
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -129,23 +138,24 @@ const ListingRigthMenu = () => {
                     {item.title}
                   </td>
                   <td className="px-6 py-4">{item.deliveryTime || "N/A"}</td>
-                  <td className="px-6 py-4">${item.price}</td>
-                  <td className="px-6 py-4"> <img
-                    src={
-                      item.gameId.imageUrls[0]
-                    }
-                    alt={"Not Found"}
-                    className="w-16 h-16 object-cover rounded-full"
-                  /></td>
-                  <td className="px-6 py-4">{item.gameId.parentCategoryId.name}</td>
+                  <td className="px-6 py-4">${item.price || "N/A"}</td>
+                  <td className="px-6 py-4">
+                    {" "}
+                    <img
+                      src={item.gameId?.imageUrls?.[0] || "NF"}
+                      alt={"Not Found"}
+                      className="w-16 h-16 object-cover rounded-full"
+                    />
+                  </td>
+                  <td className="px-6 py-4">
+                  {item.gameId?.parentCategoryId?.name || "NF"}
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         ) : (
-          <div className="text-center py-4 text-xl ">
-            No data available
-          </div>
+          <div className="text-center py-4 text-xl ">No data available</div>
         )}
       </div>
     </div>
