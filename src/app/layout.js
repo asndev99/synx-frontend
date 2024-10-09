@@ -6,7 +6,8 @@ import "./globals.css";
 import { Provider } from "react-redux";
 import store from "../redux/store";
 import { Providers } from './Providers';
-
+import { Suspense } from "react";
+import SimpleFallback from "./AppComponents/SimpleFallback";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -25,9 +26,11 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
          
           <Provider store={store}>
+          <Suspense fallback={<SimpleFallback />}>
           <Providers>
             {children}
             </Providers>
+            </Suspense>
           </Provider>
           
       </body>
