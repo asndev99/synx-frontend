@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import store from "../redux/store";
 import { Providers } from './Providers';
 import { Suspense } from "react";
-import SimpleFallback from "./AppComponents/SimpleFallback";
+import SimpleFallback from "../AppComponents/SimpleFallback";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",

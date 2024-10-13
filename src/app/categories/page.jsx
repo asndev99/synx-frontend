@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import NavbarNext from "../AppComponents/NavbarNext";
-import CardNextUi from "../AppComponents/CardNextUi";
-import Footer from "../AppComponents/FooterNext";
+import NavbarNext from "../../AppComponents/NavbarNext";
+import CardNextUi from "../../AppComponents/CardNextUi";
+import Footer from "../../AppComponents/FooterNext";
 import axios from "axios";
 import { useRouter, useSearchParams } from "next/navigation";
 

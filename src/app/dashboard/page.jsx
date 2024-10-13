@@ -2,17 +2,17 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import ListingRigthMenu from "../AppComponents/ListingRightMenu";
-import RightMenu from "../AppComponents/RightMenu";
-import SideBar from "../AppComponents/SideBar";
+import ListingRigthMenu from "../../AppComponents/ListingRightMenu";
+import RightMenu from "../../AppComponents/RightMenu";
+import SideBar from "../../AppComponents/SideBar";
 
 
-import Home from "../AppComponents/Home";
-import Categories from "../AppComponents/Categories";
-import AccountsRightMenu from "../AppComponents/AccountsRightMenu";
+import Home from "../../AppComponents/Home";
+import Categories from "../../AppComponents/Categories";
+import AccountsRightMenu from "../../AppComponents/AccountsRightMenu";
 import { PropagateLoader } from "react-spinners";
-import ItemsRightMenu from "../AppComponents/itemsRightMenu";
-import TopUpRightMenu from "../AppComponents/TopUpRightMenu";
+import ItemsRightMenu from "../../AppComponents/itemsRightMenu";
+import TopUpRightMenu from "../../AppComponents/TopUpRightMenu";
 import { Toaster } from "react-hot-toast";
 
 const Dashboard = () => {

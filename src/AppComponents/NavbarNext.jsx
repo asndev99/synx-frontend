@@ -13,7 +13,7 @@ import {
 } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import logo from "../../public/logo.png";
+import logo from "../public/logo.png";
 
 export default function NavbarNext({ onCategorySelect, activeCategoryId }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

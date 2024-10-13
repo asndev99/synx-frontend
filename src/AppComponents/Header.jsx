@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import AdminAvatar from "../../public/adminAvatar.png";
+import AdminAvatar from "../public/adminAvatar.png";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 

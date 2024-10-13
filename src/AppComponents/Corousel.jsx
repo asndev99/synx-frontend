@@ -5,9 +5,9 @@ import Slider from "react-slick";
 import Image from "next/image";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import csgo from "../../public/csgo.jpg";
-import fortnite from "../../public/fortnite.jpg";
-import cssimple from "../../public/cssimple.jpg";
+import csgo from "../public/csgo.jpg";
+import fortnite from "../public/fortnite.jpg";
+import cssimple from "../public/cssimple.jpg";
 
 const Corousel = () => {
   const settings = {
