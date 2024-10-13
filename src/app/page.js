@@ -11,7 +11,6 @@ const Page = () => {
   const handleCategorySelect = (id) => {
     setActiveCategoryId(id);
   };
-
   return (
     <>
       <NavbarNext
