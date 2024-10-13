@@ -1,16 +1,17 @@
 "use client"
 
 import React, { useState } from "react";
-import NavbarNext from "../AppComponents/NavbarNext";
-import Corousel from "../AppComponents/Corousel";
-import MainSection from "../AppComponents/MainSection";
-import Footer from "../AppComponents/FooterNext";
+import NavbarNext from  "../../AppComponents/NavbarNext";
+import Corousel from "../../AppComponents/Corousel";
+import MainSection from "../../AppComponents/MainSection";
+import Footer from "../../AppComponents/FooterNext";
 
 const Page = () => {
   const [activeCategoryId, setActiveCategoryId] = useState(null);
   const handleCategorySelect = (id) => {
     setActiveCategoryId(id);
   };
+
   return (
     <>
       <NavbarNext

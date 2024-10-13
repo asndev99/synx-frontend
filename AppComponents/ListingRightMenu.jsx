@@ -28,7 +28,7 @@ const ListingRigthMenu = () => {
         }
       );
       const data = response.data;
-      console.log("List Data here", data);
+     
       return data.data;
     } catch (error) {
       toast.error("Something went wrong while fetching the list.");
@@ -62,7 +62,7 @@ const ListingRigthMenu = () => {
 
   const HandleDeleteList = async (id) => {
     try {
-      console.log("Log id delete", id);
+     
       const token = localStorage.getItem("admin_token");
       const response = await axios.delete(
         `${process.env.NEXT_PUBLIC_API_URL}/admin/listing/delete-list/${id}`,
@@ -87,7 +87,8 @@ const ListingRigthMenu = () => {
       const categoriesData = await fetchAllCategoriesWithGames();
       setAllList(data);
       setCategories(categoriesData);
-      console.log("all List data", allList);
+      
+
     };
     getListAndCategories();
   }, [gameAdded]);

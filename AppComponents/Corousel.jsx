@@ -21,11 +21,12 @@ const Corousel = () => {
   };
 
   const slides = [
-    { src: cssimple, heading: "Counter strike Go" },
-    { src: fortnite, heading: "Fortnite" },
-    { src: csgo, heading: "Counter strike 1.6" },
+    { src:csgo, heading: "Counter strike Go" },
+    { src:cssimple, heading: "Fortnite" },
+    { src:fortnite, heading: "Counter strike 1.6" },
   ];
   return (
+    <div className="carousel-container">
     <Slider {...settings}>
       {slides.map((slide, index) => (
         <div
@@ -44,6 +45,7 @@ const Corousel = () => {
         </div>
       ))}
     </Slider>
+    </div>
   );
 };
 
