@@ -35,7 +35,6 @@ const LoginForm = () => {
       localStorage.setItem("admin_data", JSON.stringify(response.data.data));
 
       localStorage.setItem("admin_token", response.data.token);
-
       toast.success("Login successful!");
       navigation.push("/dashboard");
     } catch (err) {
