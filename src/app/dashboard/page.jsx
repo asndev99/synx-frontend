@@ -11,7 +11,7 @@ import Home from "../../../AppComponents/Home";
 import Categories from "../../../AppComponents/Categories";
 import AccountsRightMenu from "../../../AppComponents/AccountsRightMenu";
 import { PropagateLoader } from "react-spinners";
-import ItemsRightMenu from "../../../AppComponents/itemsRightMenu";
+import ItemsRightMenu from "../../../AppComponents/ItemsRightMenu";
 import TopUpRightMenu from "../../../AppComponents/TopUpRightMenu";
 import { Toaster } from "react-hot-toast";
 
