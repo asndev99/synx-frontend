@@ -32,7 +32,6 @@ const LoginForm = () => {
         data
       );
       dispatch(loginSuccess(response.data));
-
       localStorage.setItem("admin_data", JSON.stringify(response.data.data));
 
       localStorage.setItem("admin_token", response.data.token);
